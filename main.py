@@ -108,13 +108,10 @@ def tasks():
 
     tasks = db.query(Task).all()
 
-    b = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
-
     return render_template(
         "tasks.html",
         tasks=tasks,
         user=user,
-        b=b
     )
 
 
@@ -131,8 +128,9 @@ def add_task():
 
     if request.method == "POST":
         text = request.form.get("text")
+        day = request.form.get("day")
 
-        Task.create(text=text, author=user)
+        Task.create(text=text, author=user, day=day)
 
         return redirect(url_for('tasks'))
 

@@ -5,6 +5,7 @@ from datetime import datetime
 class Task(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     text = db.Column(db.String)
+    day = db.Column(db.String)
     author_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     author = db.relationship("User")
     created = db.Column(db.String, default=datetime.utcnow)

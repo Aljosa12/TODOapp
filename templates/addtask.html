@@ -14,12 +14,40 @@
             <div class="content-header">
                 <div class="title">
                     <h1 class="title auth">Add Task</h1>
-                    
-                     <form method="post">
-                             
-                         <textarea type="text" name="text" placeholder="Add task.." required></textarea> <br>
-                         
-                        <button>Submit</button>
+
+                    <form action="{{ url_for('add_task') }}" method='post'>
+                        <div class="dropdown">
+                                <select name="day" class="choose-day">
+                                     <option value="Monday">Monday</option>
+                                     <option value="Tuesday">Tuesday</option>
+                                     <option value="Wednesday">Wednesday</option>
+                                     <option value="Thursday">Thursday</option>
+                                     <option value="Friday">Friday</option>
+                                     <option value="Saturday">Saturday</option>
+                                     <option value="Sunday">Sunday</option>
+                                </select>
+                        </div>
+                            <!--
+                                <div class="dropdown">
+                                    <input class="choose-day" placeholder="due date.."></input>
+                                    <div class="dropdown-content days">
+                                    <a value="Monday">Mondy</a>
+                                    <a value="Tuesday">Tuesday</a>
+                                    <a value="Wednesday">Wednesday</a>
+                                    <a value="Thursday">Thursday</a>
+                                    <a value="Friday">Friday</a>
+                                    <a value="Saturday">Saturday</a>
+                                    <a value="Sunday">Sunday</a>
+                                  </div>
+                                </div>
+                             -->
+                        <div>
+                            <textarea type="text" name="text" placeholder="Add task.." required></textarea> <br>
+
+
+                            <button>Submit</button>
+                        </div>
+
                     
                     </form>
              </div>               

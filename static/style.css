@@ -31,7 +31,7 @@ header {
 }
 
 .title h1 {
-    color: #21b08f; /* #24D1FF; */
+    color: #fff; /* #24D1FF; */
     letter-spacing: 3px;
     font-weight: 100;
     font-size: 50px;
@@ -100,7 +100,7 @@ header {
     margin-top: 9px;
     padding-left: 5px;
     background-color: transparent;
-    border: solid 1px #21b08f;
+    border: solid 1px #fff;
     color: white;
 }
 
@@ -118,7 +118,7 @@ header {
 }
 
 .title form button:hover {
-    color: #21b08f;
+    color: darkgrey;
     background-color: #fff;
     border: solid 1px #fff;
 }
@@ -132,8 +132,28 @@ header {
     margin-top: 9px;
     padding-left: 5px;
     background-color: transparent;
-    border: solid 1px #21b08f;
+    border: solid 1px #fff;
     color: white;
+}
+
+.choose-day {
+    width: 350px;
+    height: 28px;
+    border-radius: 9px;
+    margin-top: 9px;
+    padding-left: 5px;
+    background-color: transparent;
+    border: solid 1px #fff;
+    color: white;
+}
+
+.choose-day option {
+    color: darkgrey;
+}
+
+.choose-day option:focus {
+    color: #fff !important;
+    background-color: darkgrey!important;
 }
 
 /* ----------------- TASKS PAGE ------------------*/
@@ -149,7 +169,7 @@ header {
 
 .tasks a{
     border: none;
-    color:#21b08f;
+    color:#fff;
     height: 20px;
 }
 
@@ -178,7 +198,7 @@ header {
     float: left;
     margin-right: 9px;
     font-size: 20px;
-    color: #21b08f;
+    color: #fff;
 }
 
 .nav {
@@ -188,7 +208,7 @@ header {
 }
 
 .nav ion-icon {
-    color: #21b08f;
+    color: #fff;
     font-size: 40px;
     padding-top: 5px;
     background-color: transparent !important;
@@ -202,22 +222,24 @@ header {
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: transparent;
+  background-color: white;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
 }
 
 .dropdown-content a {
-    color: #21b08f;
+    color: darkgrey;
     padding: 8px 12px;
     text-decoration: none;
     display: block;
     background-color: transparent;
+    cursor: pointer;
 }
 
 .dropdown-content a:hover {
     color: #fff;
+    background-color: darkgrey;
 }
 
 .dropdown:hover .dropdown-content {
@@ -228,53 +250,54 @@ header {
     background-color: #3e8e41;
 }
 
-.nav button {
+.nav-btn {
     margin-top: 13px;
     padding: 6px 10px;
-    color: #21b08f;
+    color: #fff;
     float: right;
     background-color: transparent;
     border-radius: 20px;
-    border: solid 1px #21b08f;
+    border: solid 1px #fff;
     cursor: pointer;
 }
 
-.nav button:hover {
-    border: solid 1px white;
-    color: #fff;
+.nav-btn:hover {
+    border: solid 1px #21b08f;
+    color: #21b08f;
 }
 
 @media (max-width: 700px) {
     .tasks {
-    width: 300px;
+    width: 380px;
     float: left;
     margin-top: -100px;
     }
 
     .nav {
-    width: 300px;
+    width: 380px;
     margin-left: auto;
     margin-right: auto;
     }
-    .nav button { display: none; }
 
     header {
-        background-color: #21b08f;
-        background-image: none;
+        background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(slika2.jpg);
     }
 
-    .tasks a{
-    border: none;
-    color: white;
-    height: 20px;
+    .title h1 {
+        text-align: left;
     }
 
-    .tasks ion-icon {
-    color: #fff;
+    .auth {
+        text-align: center !important;
     }
 
-    .nav ion-icon {
-    color: #fff;
+    .tasks button{
+    float: left;
     }
+
+    .test {
+        padding-top:10px;
+    }
+
 }
 
