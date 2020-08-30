@@ -242,7 +242,7 @@ header {
     color: #fff;
 }
 
-@media screen and (max-width: 650px) {
+@media screen and (max-width: 480px) {
     .tasks {
     width: 400px;
     float: left;
@@ -250,7 +250,7 @@ header {
     }
 
     .nav {
-    width: 400px;
+    width: 380px;
     margin-left: auto;
     margin-right: auto;
 }
