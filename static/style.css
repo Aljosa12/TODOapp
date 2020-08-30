@@ -1,0 +1,257 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* ----------------- INDEX PAGE ------------------*/
+
+body {
+    width: 100%;
+    display: inline-block;
+    margin: 0px auto;
+}
+
+header {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(slika.jpg);
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+}
+
+.content-header {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+}
+
+.title h1 {
+    color: #21b08f; /* #24D1FF; */
+    letter-spacing: 3px;
+    font-weight: 100;
+    font-size: 50px;
+    padding-bottom: 5px;
+    text-align: center;
+}
+
+.btn-auth {
+    height: 35px;
+    width: 220px;
+    
+}
+
+.btn {
+    margin-top: 10px;
+    float:left;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 25px;
+    padding: 12px;
+    font-size: 16px;
+    transition: all 0.2s;
+}
+
+.signup {
+    color: white;
+    background-color: #21b08f;
+}
+
+.signup:hover {
+    color: #21b08f;
+    border: 1px solid #21b08f;
+    background-color: transparent;
+}
+
+.login {
+    color: white;
+    background-color: transparent;
+    border: 1px solid white;
+    margin-left: 7px;
+}
+
+.login:hover {
+    color: #21b08f;
+    background-color: #fff;
+}
+
+.btn:hover {
+    font-size: 17px;
+    margin-top: 8px;
+}
+
+
+/* ----------------- SIGNUP PAGE ------------------*/
+
+.auth {
+    margin-bottom: 70px;
+    font-size: 35px;
+    color: #21b08f;
+}
+
+.title form input {
+    width: 350px;
+    height: 28px;
+    border-radius: 9px;
+    margin-top: 9px;
+    padding-left: 5px;
+    background-color: transparent;
+    border: solid 1px #21b08f;
+    color: white;
+}
+
+.title form button {
+    color: white;
+    width: 350px;
+    height: 29px;
+    border-radius: 9px;
+    margin-top: 9px;
+    padding-left: 5px;
+    background-color: #21b08f;
+    border: solid 1px #21b08f;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.title form button:hover {
+    color: #21b08f;
+    background-color: #fff;
+    border: solid 1px #fff;
+}
+
+/* ----------------- ADD TASK PAGE ------------------*/
+
+.title form textarea {
+    width: 350px;
+    height: 56px;
+    border-radius: 9px;
+    margin-top: 9px;
+    padding-left: 5px;
+    background-color: transparent;
+    border: solid 1px #21b08f;
+    color: white;
+}
+
+/* ----------------- TASKS PAGE ------------------*/
+.tasks {
+    width: 650px;
+    float: left;
+    margin-top: -100px;
+}
+
+.tasks form {
+    height: 20px;
+}
+
+.tasks a{
+    border: none;
+    color:#21b08f;
+    height: 20px;
+}
+
+.tasks button{
+    border-radius: 10px;
+    border: none;
+    color: #fff;
+    background-color: red;
+    float: right;
+    cursor: pointer;
+    font-size: 10px;
+    padding: 1px 4px;
+}
+
+.tasks button:hover {
+    background-color: transparent;
+    color: #fff;
+    border: solid orangered 1px;
+}
+
+.test {
+    margin-top: 16px;
+}
+
+.tasks ion-icon {
+    float: left;
+    margin-right: 9px;
+    font-size: 20px;
+    color: #21b08f;
+}
+
+.nav {
+    width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.nav ion-icon {
+    color: #21b08f;
+    font-size: 40px;
+    padding-top: 5px;
+    background-color: transparent !important;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: transparent;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+    color: #21b08f;
+    padding: 8px 12px;
+    text-decoration: none;
+    display: block;
+    background-color: transparent;
+}
+
+.dropdown-content a:hover {
+    color: #fff;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+}
+
+.nav button {
+    margin-top: 13px;
+    padding: 6px 10px;
+    color: #21b08f;
+    float: right;
+    background-color: transparent;
+    border-radius: 20px;
+    border: solid 1px #21b08f;
+    cursor: pointer;
+}
+
+.nav button:hover {
+    border: solid 1px white;
+    color: #fff;
+}
+
+@media screen and (max-width: 650px) {
+    .tasks {
+    width: 400px;
+    float: left;
+    margin-top: -100px;
+    }
+
+    .nav {
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+}
