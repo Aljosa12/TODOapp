@@ -5,48 +5,50 @@
     <title>ToDo app</title>
     
     <link rel="stylesheet" href="../static/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+    <meta name="viewport" content ="width=device-width,initial-scale=1,user-scalable=yes" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<body> 
-    <header>
-        <div class="nav">
-            <div style="background-color: transparent" class="dropdown">
-              <ion-icon name="list-outline"></ion-icon>
-              <div class="dropdown-content">
-                <a href="/add_task">add task</a>
-                <a href="/logout">logOut</a>
-              </div>
+<body>
+        <header>
+
+            <div class="nav">
+                <div style="background-color: transparent" class="dropdown">
+                  <ion-icon name="list-outline"></ion-icon>
+                  <div class="dropdown-content">
+                    <a href="/add_task">add task</a>
+                    <a href="/logout">logOut</a>
+                  </div>
+                </div>
+
+                <button>add task</button>
             </div>
 
-            <button>add task</button>
-        </div>
 
 
+             <div class="content-header">
+                <div class="tasks">
+                            {% for task in tasks%}
 
-         <div class="content-header">
-            <div class="tasks">
-                        {% for task in tasks%}
+                                    {% if user.id == task.author.id %}
+                                        <div class="test">
+                                            <form method="POST" action="/task/{{task.id}}/delete">
+                                                <ion-icon name="checkmark-circle-outline"></ion-icon>
+                                                <td><a>{{ task.text }}</a></td>
+                                                <td><a>{{ task.id }}</a></td>
+                                                <td><button>delete</button></td>
 
-                                {% if user.id == task.author.id %}
-                                    <div class="test">
-                                        <form method="POST" action="/task/{{task.id}}/delete">
-                                            <ion-icon name="checkmark-circle-outline"></ion-icon>
-                                            <td><a>{{ task.text }}</a></td>
-                                            <td><a>{{ task.id }}</a></td>
-                                            <td><button>delete</button></td>
+                                            </form>
+                                        </div>
+                                    {% endif %}
 
-                                        </form>
-                                    </div>
-                                {% endif %}
+                            {% endfor %}
 
-                        {% endfor %}
+                </div>
 
-            </div>
+                </div>
 
-            </div>
-        </header>
+            </header>
 
         <div style="padding: 25px 0; text-align: center; height: 60px; background-color: #393b40;">
             <p style="font-family: 'Montserrat', sans-serif; margin-top: auto; margin-bottom: auto; font-size: 7px; color: white;">Made by: Aljoša Lazarevič Gostinčar</p>

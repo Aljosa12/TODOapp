@@ -15,8 +15,10 @@ body {
 
 header {
     background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(slika.jpg);
-    background-size: cover;
-    background-position: center;
+    -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
     height: 100vh;
 }
 
@@ -242,17 +244,37 @@ header {
     color: #fff;
 }
 
-@media screen and (max-width: 480px) {
+@media (max-width: 700px) {
     .tasks {
-    width: 400px;
+    width: 300px;
     float: left;
     margin-top: -100px;
     }
 
     .nav {
-    width: 380px;
+    width: 300px;
     margin-left: auto;
     margin-right: auto;
     }
     .nav button { display: none; }
+
+    header {
+        background-color: #21b08f;
+        background-image: none;
+    }
+
+    .tasks a{
+    border: none;
+    color: white;
+    height: 20px;
+    }
+
+    .tasks ion-icon {
+    color: #fff;
+    }
+
+    .nav ion-icon {
+    color: #fff;
+    }
 }
+
