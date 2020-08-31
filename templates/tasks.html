@@ -2,12 +2,13 @@
 <html style="height: 100%; width: 100%;" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>ToDo app</title>
+    <title>Taskmanager</title>
     
     <link rel="stylesheet" href="../static/style.css">
     <meta name="viewport" content ="width=device-width,initial-scale=1,user-scalable=yes" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="../static/logo2.png" sizes="16x16 32x32" type="image/png">
 </head>
 <body>
         <header>
@@ -21,7 +22,6 @@
                   </div>
                 </div>
 
-                <!--<a class="nav-btn">add task</a>-->
             </div>
 
 
@@ -37,6 +37,7 @@
                                                 <td><a>{{ task.text }}</a></td>
                                                 <td><a style="font-size: 12px;color: #21b08f">{{ task.day }}</a></td>
                                                 <td><button>delete</button></td>
+                                                <td><button style="padding-left: 6px;padding-right: 6px;margin-right: 5px; background-color: dodgerblue">edit</button></td>
 
                                             </form>
                                         </div>

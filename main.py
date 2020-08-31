@@ -127,6 +127,7 @@ def add_task():
         return render_template("addtask.html")
 
     if request.method == "POST":
+
         text = request.form.get("text")
         day = request.form.get("day")
 
@@ -137,7 +138,7 @@ def add_task():
 
 @app.route("/task/<task_id>/delete", methods=["POST", "GET"])
 def task_delete(task_id):
-    task = db.query(Task).get(int(task_id))  # get comment from db by ID
+    task = db.query(Task).get(int(task_id))
 
     session_token = request.cookies.get("session_token")
     user = db.query(User).filter_by(session_token=session_token).first()
@@ -148,7 +149,7 @@ def task_delete(task_id):
     if not user:
         return redirect(url_for('login'))
 
-    task_id = task.id  # save the topic ID in a variable before you delete the comment
+    task_id = task.id
 
     db.delete(task)
     db.commit()
