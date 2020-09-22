@@ -207,11 +207,5 @@ def upload():
         return file.filename
 
 
-@app.route('/event/<int:id>/logo')
-def event_logo(id):
-    event = Image.query.get_or_404(id)
-    return app.response_class(event.logo, mimetype='application/octet-stream')
-
-
 if __name__ == '__main__':
     app.run()
