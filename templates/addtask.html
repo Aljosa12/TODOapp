@@ -6,6 +6,7 @@
     
     <link rel="stylesheet" href="../static/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
     <link rel="icon" href="../static/logo2.png" sizes="16x16 32x32" type="image/png">
 </head>
@@ -28,20 +29,11 @@
                                      <option value="Sunday">Sunday</option>
                                 </select>
                         </div>
-                            <!--
-                                <div class="dropdown">
-                                    <input class="choose-day" placeholder="due date.."></input>
-                                    <div class="dropdown-content days">
-                                    <a value="Monday">Mondy</a>
-                                    <a value="Tuesday">Tuesday</a>
-                                    <a value="Wednesday">Wednesday</a>
-                                    <a value="Thursday">Thursday</a>
-                                    <a value="Friday">Friday</a>
-                                    <a value="Saturday">Saturday</a>
-                                    <a value="Sunday">Sunday</a>
-                                  </div>
-                                </div>
-                             -->
+
+                        <div>
+                            <input name="date" id="myInput">
+                        </div>
+
                         <div>
                             <textarea type="text" name="text" placeholder="Add task.." required></textarea> <br>
 
@@ -54,6 +46,6 @@
              </div>               
             </div>
         </header>
-
+    <script src="../static/js/final.js"></script>
 </body>
 </html>

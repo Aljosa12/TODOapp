@@ -12,7 +12,7 @@
 </head>
 <body>
         <header>
-
+          <!-------------- Navigacija ---------------->
             <div class="nav">
                 <div style="background-color: transparent" class="dropdown">
                   <ion-icon name="list-outline"></ion-icon>
@@ -21,30 +21,34 @@
                     <a href="/logout">logOut</a>
                   </div>
                 </div>
-
+                <p>My completed tasks: {{ user.completed }}</p>
             </div>
 
 
 
+           <!-------------- Tasks display ---------------->
              <div class="content-header">
                 <div class="tasks">
-                            {% for task in tasks%}
-
+                            {% for task in tasks %}
                                     {% if user.id == task.author.id %}
                                         <div class="test">
                                             <form method="POST" action="/task/{{task.id}}/delete">
-                                                <ion-icon name="checkmark-circle-outline"></ion-icon>
-                                                <td><a>{{ task.text }}</a></td>
+                                            <ion-icon name="checkmark-circle-outline"></ion-icon>
+                                                <td>{{ task.text }}</td>
+                                                {% if today == task.date %}
+                                                    <td><a style="font-size: 12px;color: #21b08f">Today</a></td>
+                                                {% else  %}
                                                 <td><a style="font-size: 12px;color: #21b08f">{{ task.day }}</a></td>
-                                                <td><button>delete</button></td>
-                                                <td><button style="padding-left: 6px;padding-right: 6px;margin-right: 5px; background-color: dodgerblue">edit</button></td>
-
+                                                {% endif %}
+                                                    <td><button type="submit" name="action" value="delete" class="button delete">delete</button></td>
+                                                    <td><button type="submit" name="action" value="completed" class="button edit">completed</button></td>
                                             </form>
                                         </div>
                                     {% endif %}
 
                             {% endfor %}
-
+                    
+                    <img src=""><p>{{ user.image }}</p>
                 </div>
 
                 </div>
@@ -52,9 +56,10 @@
             </header>
 
         <div style="padding: 25px 0; text-align: center; height: 60px; background-color: #393b40;">
-            <p style="font-family: 'Montserrat', sans-serif; margin-top: auto; margin-bottom: auto; font-size: 7px; color: white;">Made by: Aljoša Lazarevič Gostinčar</p>
+            <p id="copyright" style="font-family: 'Montserrat', sans-serif; margin-top: auto; margin-bottom: auto; font-size: 7px; color: white;">Made by: Aljoša Lazarevič Gostinčar</p>
         </div>
                
         <script src="https://unpkg.com/ionicons@5.1.2/dist/ionicons.js"></script>
+        <script src="../static/js/final.js"></script>
 </body>
 </html>

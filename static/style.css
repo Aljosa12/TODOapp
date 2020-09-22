@@ -11,6 +11,7 @@ body {
     width: 100%;
     display: inline-block;
     margin: 0px auto;
+    color: white;
 }
 
 header {
@@ -163,6 +164,7 @@ header {
     width: 750px;
     float: left;
     margin-top: -200px;
+    color: white;
 }
 
 .tasks form {
@@ -175,7 +177,7 @@ header {
     height: 20px;
 }
 
-.tasks button{
+.button{
     border-radius: 10px;
     border: none;
     color: #fff;
@@ -183,13 +185,23 @@ header {
     float: right;
     cursor: pointer;
     font-size: 10px;
-    padding: 1px 4px;
+    padding: 2px 5px;
 }
 
-.tasks button:hover {
-    background-color: transparent;
+.button:hover {
+    background-color: darkred;
     color: #fff;
-    border: solid orangered 1px;
+}
+
+.edit{
+    color: #fff;
+    padding: 2px 5px;
+    margin-right: 5px;
+    background-color: dodgerblue;
+}
+
+.edit:hover {
+    background-color: darkblue;
 }
 
 .test {

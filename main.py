@@ -1,10 +1,13 @@
 import hashlib
 import uuid
 from flask import Flask, render_template, request, redirect, url_for, make_response
+from datetime import date
+from base64 import b64encode
 
 from models.settings import db
 from models.users import User
 from models.tasks import Task
+from models.images import Image
 
 app = Flask(__name__)
 
@@ -16,6 +19,9 @@ db.create_all()
 def index():
     session_token = request.cookies.get("session_token")
     user = db.query(User).filter_by(session_token=session_token).first()
+
+    if user:
+        return redirect(url_for('tasks'))
 
     return render_template("index.html", user=user)
 
@@ -34,6 +40,12 @@ def logout():
 
 @app.route("/signup", methods=["GET", "POST"])
 def signup():
+    session_token = request.cookies.get("session_token")
+    user = db.query(User).filter_by(session_token=session_token).first()
+
+    if user:
+        return redirect(url_for('tasks'))
+
     if request.method == "GET":
         return render_template("signup.html")
 
@@ -67,6 +79,11 @@ def signup():
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
+    session_token = request.cookies.get("session_token")
+    user = db.query(User).filter_by(session_token=session_token).first()
+    if user:
+        return redirect(url_for('tasks'))
+
     if request.method == "GET":
         return render_template("signin.html")
 
@@ -95,13 +112,15 @@ def login():
 
                 return response
             else:
-                return "Your password is incorrect!"
+                return "password incorect"
 
 
 @app.route("/tasks", methods=["GET"])
 def tasks():
     session_token = request.cookies.get("session_token")
     user = db.query(User).filter_by(session_token=session_token).first()
+
+    today = str(date.today())
 
     if not user:
         return redirect(url_for("index"))
@@ -112,6 +131,7 @@ def tasks():
         "tasks.html",
         tasks=tasks,
         user=user,
+        today=today
     )
 
 
@@ -130,8 +150,9 @@ def add_task():
 
         text = request.form.get("text")
         day = request.form.get("day")
+        date = request.form.get("date")
 
-        Task.create(text=text, author=user, day=day)
+        Task.create(text=text, author=user, day=day, date=date)
 
         return redirect(url_for('tasks'))
 
@@ -149,11 +170,47 @@ def task_delete(task_id):
     if not user:
         return redirect(url_for('login'))
 
-    task_id = task.id
+    if request.form['action'] == 'delete':
+        task_id = task.id
 
-    db.delete(task)
-    db.commit()
+        db.delete(task)
+        db.commit()
+
+    if request.form['action'] == 'completed':
+        user.completed = user.completed + 1
+        db.commit()
+
+        task_id = task.id
+
+        db.delete(task)
+        db.commit()
+
     return redirect(url_for('tasks', task_id=task_id))
+
+
+@app.route("/upload", methods=["POST", "GET"])
+def upload():
+    session_token = request.cookies.get("session_token")
+    user = db.query(User).filter_by(session_token=session_token).first()
+
+    if request.method == "GET":
+        return render_template("uploadImage.html")
+
+    if request.method == "POST":
+        file = request.files['inputFile']
+
+        newImage = Image(author=user, name=file.filename, image=file.read())
+
+        db.session.add(newImage)
+        db.session.commit()
+
+        return file.filename
+
+
+@app.route('/event/<int:id>/logo')
+def event_logo(id):
+    event = Image.query.get_or_404(id)
+    return app.response_class(event.logo, mimetype='application/octet-stream')
 
 
 if __name__ == '__main__':

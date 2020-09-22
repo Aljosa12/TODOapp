@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Image input</h1>
+        <form method="post" action="/upload" enctype="multipart/form-data">
+            <div class="form-group">
+                <!-- <label for="inputFile">Image input</label> -->
+                <input type="file" name="inputFile">
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <img src="{{ url_for('event_logo', id=event.id }}"/>
+</body>
+</html>
