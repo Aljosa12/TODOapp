@@ -135,6 +135,17 @@ def tasks():
     )
 
 
+@app.route("/my_profile", methods=["GET"])
+def my_profile():
+    session_token = request.cookies.get("session_token")
+    user = db.query(User).filter_by(session_token=session_token).first()
+
+    if not user:
+        return redirect(url_for("index"))
+
+    return render_template("myProfile.html", user=user)
+
+
 @app.route("/add_task", methods=["GET", "POST"])
 def add_task():
     session_token = request.cookies.get("session_token")
