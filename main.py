@@ -149,8 +149,9 @@ def my_profile():
     for img in images:
         if user.id == img.author_id:
             image = img.image_url
+            return render_template("myProfile.html", user=user, images=images, image=image)
 
-    return render_template("myProfile.html", user=user, images=images, image=image)
+    return render_template("myProfile.html", user=user, images=images)
 
 
 @app.route("/add_task", methods=["GET", "POST"])
