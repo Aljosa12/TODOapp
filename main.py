@@ -211,14 +211,23 @@ def task_delete(task_id):
 def upload():
     session_token = request.cookies.get("session_token")
     user = db.query(User).filter_by(session_token=session_token).first()
+    img = db.query(Image).filter_by(author_id=user.id).first()
 
     if request.method == "GET":
         return render_template("uploadImage.html")
 
     if request.method == "POST":
+        if user.image_count >= 1:
+
+            db.delete(img)
+            db.commit
+
         image_url = request.form['image_url']
 
         newImage = Image(author=user, image_url=image_url)
+
+        user.image_count = user.image_count + 1
+        db.commit()
 
         db.add(newImage)
         db.commit()
