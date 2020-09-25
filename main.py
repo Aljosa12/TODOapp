@@ -143,7 +143,14 @@ def my_profile():
     if not user:
         return redirect(url_for("index"))
 
-    return render_template("myProfile.html", user=user)
+    u = user.id
+
+    images = Image.query().all()
+    for img in images:
+        if user.id == img.author_id:
+            image = img.image_url
+
+    return render_template("myProfile.html", user=user, images=images, image=image)
 
 
 @app.route("/add_task", methods=["GET", "POST"])
@@ -208,14 +215,14 @@ def upload():
         return render_template("uploadImage.html")
 
     if request.method == "POST":
-        file = request.files['inputFile']
+        image_url = request.form['image_url']
 
-        newImage = Image(author=user, name=file.filename, image=file.read())
+        newImage = Image(author=user, image_url=image_url)
 
-        db.session.add(newImage)
-        db.session.commit()
+        db.add(newImage)
+        db.commit()
 
-        return file.filename
+        return redirect(url_for('my_profile'))
 
 
 if __name__ == '__main__':

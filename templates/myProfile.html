@@ -8,7 +8,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
 
     <meta name="viewport" content ="width=device-width,initial-scale=1,user-scalable=yes" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="../static/logo2.png" sizes="16x16 32x32" type="image/png">
 </head>
@@ -25,17 +24,17 @@
                   </div>
                 </div>
 
-                <div class="count">
-                    <p>Completed: {{ user.completed }}</p>
-                </div>
+
+
             </div>
 
-
             <div class="content-header">
-                <div class="title">
-                    <img style="margin-top: -200px; border-radius: 50px; width: 100px; height: 100px;" src="../static/profile.png">
-                    <p style="text-align: center; margin-top: 10px;"> {{ user.username }}</p>
-             </div>
+                <div style="text-align:center;" class="title">
+                    <img style="margin-top: -200px; border-radius: 50px; width: 100px; height: 100px;" src="https://imgur.com/a/UYAYKsO"/>
+                    <p style="margin-top: 10px;"> {{ user.username }}</p>
+                    <p style="margin-top: 10px;"> {{ user.email }}</p>
+                    <p style="margin-top: 10px;">Completed: {{ user.completed }} </p>
+                </div>
             </div>
 
         </header>
