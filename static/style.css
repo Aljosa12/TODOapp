@@ -225,8 +225,8 @@ header {
     color: #21b08f;
 }
 
-.count {
-    width: 200px;
+.profile-picture {
+    width: 35px;
     float: right;
     padding-top: 15px;
 }
@@ -286,6 +286,67 @@ header {
     color: #fff;
 }
 
+/* ----------------- MY PROFILE ------------------*/
+
+.profile_picture{
+    margin-top: -200px; 
+    border-radius: 50px; 
+    width: 100px; 
+    height: 100px;
+    float: right;
+}
+
+.btn-img {
+    cursor: pointer;
+}
+
+.img-wrap a{
+    position: relative;
+    width: 100px;
+    height: 100px;
+}
+
+.img-wrap {
+    width: 100px;
+    height: 100px;
+    margin-left: auto;
+    margin-right: auto;
+}
+  
+  .btn-img img {
+    display: block;
+    transition: all 0.6s;
+  }
+  
+  .btn-img:hover .img-wrap {
+    background-color: black;
+    border-radius: 50px; 
+    width: 100px; 
+    height: 100px;
+  }
+  
+  .btn-img:hover img {
+    opacity: 0.4;
+  }
+
+  .text {
+    position: absolute;  
+    top: 40px;
+    margin-left: -29px;
+    bottom: 0;
+    left: 0;
+    right: -10px;
+    visibility: hidden;
+    color: #fff;
+    opacity: 0;
+    transition: opacity .6s, visibility .6s;
+  }
+
+  .img-wrap:hover .text {
+    visibility: visible;
+    opacity: 1;
+  }
+
 
 @media (max-width: 700px) {
     .tasks {
@@ -313,7 +374,7 @@ header {
     }
 
     .tasks button{
-    float: none;
+        float: none;
     }
 
     .test {
