@@ -20,26 +20,37 @@
                     <a href="/tasks">tasks</a>
                     <a href="/add_task">add task</a>
                     <a href="/logout">logOut</a>
-                    <a href="/my_profile">myProfile</a>
                   </div>
                 </div>
-
-
-
             </div>
 
             <div class="content-header">
                 <div style="text-align:center;" class="title">
                     {% if not image %}
-                        <img style="margin-top: -200px; border-radius: 50px; width: 100px; height: 100px;" src="../static/profile.png"/>
-                    {% endif %}
-                    {% if image %}
-                        <img style="margin-top: -200px; border-radius: 50px; width: 100px; height: 100px;" src="{{ image }}"/>
+                    <div class="btn-img" style="width: 100px;">
+                        <div class="img-wrap">
+                            <a href="/upload">
+                                <img style="margin-top: -200px; border-radius: 50px; width: 100px; height: 100px;" src="../static/profile.png"/>
+                            </a>
+                            <div class="middle">
+                                <div class="text">John Doe</div>
+                            </div>
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="btn-img" style="width: 150px;">
+                        <div class="img-wrap">
+                            <a href="/upload">
+                                <img style="margin-top: -200px; border-radius: 50px; width: 100px; height: 100px;" src="{{ image }}"/>
+
+                                <div class="text">Upload</div>
+                            </a>
+                        </div>
+                    </div>
                     {% endif %}
                     <p style="margin-top: 10px;"> {{ user.username }}</p>
                     <p style="margin-top: 10px;"> {{ user.email }}</p>
                     <p style="margin-top: 10px;">Completed: {{ user.completed }} </p>
-                    <a href="/upload">Upload profile image</a>
                 </div>
             </div>
 

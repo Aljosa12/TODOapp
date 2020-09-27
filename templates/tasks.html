@@ -22,8 +22,17 @@
                     <a href="/my_profile">myProfile</a>
                   </div>
                 </div>
-                <div class="count">
-                    <p>Completed: {{ user.completed }}</p>
+                <div class="profile-picture">
+                    {% if not img %}
+                        <a href="my_profile">
+                            <img style="border-radius: 50px; width: 35px; height: 35px;" src="../static/profile.png"/>
+                        </a>
+                    {% else %}
+                        <a href="my_profile">
+                            <img style="border-radius: 50px; width: 35px; height: 35px;" src="{{ img.image_url }}"/>
+                        </a>
+                    {% endif %}
+
                 </div>
             </div>
 

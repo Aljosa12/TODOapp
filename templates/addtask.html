@@ -7,12 +7,37 @@
     <link rel="stylesheet" href="../static/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-
     <link rel="icon" href="../static/logo2.png" sizes="16x16 32x32" type="image/png">
+
+    <meta name="viewport" content ="width=device-width,initial-scale=1,user-scalable=yes" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-    
     <header>
+
+        <div class="nav">
+                <div style="background-color: transparent" class="dropdown">
+                  <ion-icon name="list-outline"></ion-icon>
+                  <div class="dropdown-content">
+                    <a href="/tasks">tasks</a>
+                    <a href="/add_task">add task</a>
+                    <a href="/logout">logOut</a>
+                  </div>
+                </div>
+                <div class="profile-picture">
+                    {% if not img %}
+                        <a href="my_profile">
+                            <img style="border-radius: 50px; width: 35px; height: 35px;" src="../static/profile.png"/>
+                        </a>
+                    {% else %}
+                        <a href="my_profile">
+                            <img style="border-radius: 50px; width: 35px; height: 35px;" src="{{ img.image_url }}"/>
+                        </a>
+                    {% endif %}
+
+                </div>
+            </div>
+
             <div class="content-header">
                 <div class="title">
                     <h1 class="title auth">Add Task</h1>
@@ -47,5 +72,6 @@
             </div>
         </header>
     <script src="../static/js/final.js"></script>
+    <script src="https://unpkg.com/ionicons@5.1.2/dist/ionicons.js"></script>
 </body>
 </html>

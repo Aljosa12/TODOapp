@@ -119,6 +119,7 @@ def login():
 def tasks():
     session_token = request.cookies.get("session_token")
     user = db.query(User).filter_by(session_token=session_token).first()
+    img = db.query(Image).filter_by(author_id=user.id).first()
 
     today = str(date.today())
 
@@ -131,7 +132,8 @@ def tasks():
         "tasks.html",
         tasks=tasks,
         user=user,
-        today=today
+        today=today,
+        img=img
     )
 
 
@@ -158,6 +160,7 @@ def my_profile():
 def add_task():
     session_token = request.cookies.get("session_token")
     user = db.query(User).filter_by(session_token=session_token).first()
+    img = db.query(Image).filter_by(author_id=user.id).first()
 
     if not user:
         return render_template("index.html")
@@ -171,7 +174,7 @@ def add_task():
         day = request.form.get("day")
         date = request.form.get("date")
 
-        Task.create(text=text, author=user, day=day, date=date)
+        Task.create(text=text, author=user, day=day, date=date, img=img)
 
         return redirect(url_for('tasks'))
 
@@ -196,7 +199,7 @@ def task_delete(task_id):
         db.commit()
 
     if request.form['action'] == 'completed':
-        user.completed = user.completed + 1
+        user.completed += 1
         db.commit()
 
         task_id = task.id
@@ -226,7 +229,7 @@ def upload():
 
         newImage = Image(author=user, image_url=image_url)
 
-        user.image_count = user.image_count + 1
+        user.image_count += 1
         db.commit()
 
         db.add(newImage)
