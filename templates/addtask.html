@@ -2,7 +2,7 @@
 <html style="height: 100%; width: 100%;" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Taskmanager</title>
+    <title>({{ notification }}) add task | Taskmanager</title>
     
     <link rel="stylesheet" href="../static/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
@@ -20,7 +20,7 @@
                   <ion-icon name="list-outline"></ion-icon>
                   <div class="dropdown-content">
                     <a href="/tasks">tasks</a>
-                    <a href="/add_task">add task</a>
+                    <a href="/my_profile">myProfile</a>
                     <a href="/logout">logOut</a>
                   </div>
                 </div>
@@ -43,17 +43,6 @@
                     <h1 class="title auth">Add Task</h1>
 
                     <form action="{{ url_for('add_task') }}" method='post'>
-                        <div class="dropdown">
-                                <select name="day" class="choose-day">
-                                     <option value="Monday">Monday</option>
-                                     <option value="Tuesday">Tuesday</option>
-                                     <option value="Wednesday">Wednesday</option>
-                                     <option value="Thursday">Thursday</option>
-                                     <option value="Friday">Friday</option>
-                                     <option value="Saturday">Saturday</option>
-                                     <option value="Sunday">Sunday</option>
-                                </select>
-                        </div>
 
                         <div>
                             <input name="date" id="myInput">
@@ -70,7 +59,12 @@
                     </form>
              </div>               
             </div>
+
         </header>
+
+    <div style="padding: 25px 0; text-align: center; height: 60px; background-color: #393b40;">
+            <p id="copyright" style="font-family: 'Montserrat', sans-serif; margin-top: auto; margin-bottom: auto; font-size: 7px; color: white;">Made by: Aljoša Lazarevič Gostinčar</p>
+        </div>
     <script src="../static/js/final.js"></script>
     <script src="https://unpkg.com/ionicons@5.1.2/dist/ionicons.js"></script>
 </body>

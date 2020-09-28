@@ -2,7 +2,7 @@
 <html style="height: 100%; width: 100%;" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Taskmanager</title>
+    <title>({{ notification }}) Taskmanager</title>
     
     <link rel="stylesheet" href="../static/style.css">
     <meta name="viewport" content ="width=device-width,initial-scale=1,user-scalable=yes" />
@@ -18,8 +18,8 @@
                   <ion-icon name="list-outline"></ion-icon>
                   <div class="dropdown-content">
                     <a href="/add_task">add task</a>
-                    <a href="/logout">logOut</a>
                     <a href="/my_profile">myProfile</a>
+                    <a href="/logout">logOut</a>
                   </div>
                 </div>
                 <div class="profile-picture">
@@ -45,7 +45,7 @@
                                             <form method="POST" action="/task/{{task.id}}/delete">
                                             <ion-icon name="checkmark-circle-outline"></ion-icon>
                                                 <td>{{ task.text }}</td>
-                                                {% if today == task.date %}
+                                                {% if today == task.task_date %}
                                                     <td><a style="font-size: 12px;color: #21b08f">Today</a></td>
                                                 {% else  %}
                                                 <td><a style="font-size: 12px;color: #21b08f">{{ task.day }}</a></td>
@@ -55,7 +55,6 @@
                                             </form>
                                         </div>
                                     {% endif %}
-
                             {% endfor %}
                     
                 </div>

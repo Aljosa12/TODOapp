@@ -1,5 +1,7 @@
 import hashlib
 import uuid
+from itertools import count
+
 from flask import Flask, render_template, request, redirect, url_for, make_response
 from datetime import date
 from base64 import b64encode
@@ -8,6 +10,9 @@ from models.settings import db
 from models.users import User
 from models.tasks import Task
 from models.images import Image
+
+from test import dayNameFromWeekday
+from _datetime import datetime, date
 
 app = Flask(__name__)
 
@@ -121,19 +126,20 @@ def tasks():
     user = db.query(User).filter_by(session_token=session_token).first()
     img = db.query(Image).filter_by(author_id=user.id).first()
 
+    tasks = db.query(Task).all()
+    notification = len(tasks)
     today = str(date.today())
 
     if not user:
         return redirect(url_for("index"))
-
-    tasks = db.query(Task).all()
 
     return render_template(
         "tasks.html",
         tasks=tasks,
         user=user,
         today=today,
-        img=img
+        img=img,
+        notification=notification
     )
 
 
@@ -141,42 +147,49 @@ def tasks():
 def my_profile():
     session_token = request.cookies.get("session_token")
     user = db.query(User).filter_by(session_token=session_token).first()
+    img = db.query(Image).filter_by(author_id=user.id).first()
 
     if not user:
         return redirect(url_for("index"))
 
-    u = user.id
+    tasks = db.query(Task).all()
+    notification = len(tasks)
+    today = date.today()
 
-    images = Image.query().all()
-    for img in images:
-        if user.id == img.author_id:
-            image = img.image_url
-            return render_template("myProfile.html", user=user, images=images, image=image)
+    this_week_count = 0
 
-    return render_template("myProfile.html", user=user, images=images)
+    for tsk in tasks:
+        if datetime.strptime(tsk.task_date, "%Y-%m-%d").isocalendar()[1] == today.isocalendar()[1]:
+            this_week_count = this_week_count + 1
+
+    return render_template("myProfile.html", user=user, img=img, this_week_count=this_week_count, notification=notification)
 
 
 @app.route("/add_task", methods=["GET", "POST"])
 def add_task():
     session_token = request.cookies.get("session_token")
     user = db.query(User).filter_by(session_token=session_token).first()
+
     img = db.query(Image).filter_by(author_id=user.id).first()
 
     if not user:
         return render_template("index.html")
 
     if request.method == "GET":
-        return render_template("addtask.html")
+        return render_template("addtask.html", img=img)
 
     if request.method == "POST":
 
         text = request.form.get("text")
-        day = request.form.get("day")
-        date = request.form.get("date")
+        notification = len(tasks)
+        task_date = request.form.get("date")
 
-        Task.create(text=text, author=user, day=day, date=date, img=img)
+        name_day = date.weekday(datetime.strptime(task_date, "%Y-%m-%d"))
+        day = dayNameFromWeekday(name_day)
 
-        return redirect(url_for('tasks'))
+        Task.create(text=text, author=user, day=day, task_date=task_date, notification=notification)
+
+    return redirect(url_for('tasks'))
 
 
 @app.route("/task/<task_id>/delete", methods=["POST", "GET"])
