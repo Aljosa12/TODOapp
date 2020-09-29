@@ -2,7 +2,7 @@ import hashlib
 import uuid
 from itertools import count
 
-from flask import Flask, render_template, request, redirect, url_for, make_response
+from flask import Flask, render_template, request, redirect, url_for, make_response, jsonify
 from datetime import date
 from base64 import b64encode
 
@@ -125,8 +125,8 @@ def tasks():
     session_token = request.cookies.get("session_token")
     user = db.query(User).filter_by(session_token=session_token).first()
     img = db.query(Image).filter_by(author_id=user.id).first()
+    tasks = db.query(Task).filter_by(author_id=user.id).all()
 
-    tasks = db.query(Task).all()
     notification = len(tasks)
     today = str(date.today())
 
@@ -148,11 +148,11 @@ def my_profile():
     session_token = request.cookies.get("session_token")
     user = db.query(User).filter_by(session_token=session_token).first()
     img = db.query(Image).filter_by(author_id=user.id).first()
+    tasks = db.query(Task).filter_by(author_id=user.id).all()
 
     if not user:
         return redirect(url_for("index"))
 
-    tasks = db.query(Task).all()
     notification = len(tasks)
     today = date.today()
 
@@ -169,8 +169,8 @@ def my_profile():
 def add_task():
     session_token = request.cookies.get("session_token")
     user = db.query(User).filter_by(session_token=session_token).first()
-
     img = db.query(Image).filter_by(author_id=user.id).first()
+    tasks = db.query(Task).filter_by(author_id=user.id).all()
 
     if not user:
         return render_template("index.html")
@@ -187,9 +187,9 @@ def add_task():
         name_day = date.weekday(datetime.strptime(task_date, "%Y-%m-%d"))
         day = dayNameFromWeekday(name_day)
 
-        Task.create(text=text, author=user, day=day, task_date=task_date, notification=notification)
+        Task.create(text=text, author=user, day=day, task_date=task_date)
 
-    return redirect(url_for('tasks'))
+    return redirect(url_for('tasks', notification=notification))
 
 
 @app.route("/task/<task_id>/delete", methods=["POST", "GET"])
@@ -222,33 +222,58 @@ def task_delete(task_id):
 
     return redirect(url_for('tasks', task_id=task_id))
 
-
-@app.route("/upload", methods=["POST", "GET"])
+'''
+@app.route("/upload", methods=["POST"])
 def upload():
     session_token = request.cookies.get("session_token")
     user = db.query(User).filter_by(session_token=session_token).first()
     img = db.query(Image).filter_by(author_id=user.id).first()
 
-    if request.method == "GET":
-        return render_template("uploadImage.html")
+    image_url = request.form['image_url']
 
-    if request.method == "POST":
+    if image_url:
+
         if user.image_count >= 1:
 
             db.delete(img)
             db.commit
 
-        image_url = request.form['image_url']
-
         newImage = Image(author=user, image_url=image_url)
+        newImage.insert()
 
         user.image_count += 1
         db.commit()
 
-        db.add(newImage)
-        db.commit()
+        return jsonify(newImage.to_dict)
+    else:
+        return jsonify({"success": False, "message": "Error"})
 
-        return redirect(url_for('my_profile'))
+    #return redirect(url_for('my_profile'))
+'''
+
+@app.route("/upload", methods=["POST"])
+def upload():
+    session_token = request.cookies.get("session_token")
+    user = db.query(User).filter_by(session_token=session_token).first()
+    img = db.query(Image).filter_by(author_id=user.id).first()
+
+    image_url = request.json.get('image_url')
+
+    if user.image_count >= 1:
+        db.delete(img)
+        db.commit
+
+    user.image_count += 1
+    db.commit()
+
+    if image_url:
+
+        newImage = Image(author=user, image_url=image_url)
+        newImage.insert()
+
+        return jsonify(newImage.to_dict)
+    else:
+        return jsonify({"success": False, "message": "fdfdfdfdfdfdfd"})
 
 
 if __name__ == '__main__':

@@ -296,6 +296,16 @@ header {
     float: right;
 }
 
+.profile_data {
+    margin-top: 10px;
+}
+
+.profile_data p{
+    margin: 0;
+    color: #fff;
+    margin-top: 5px;
+}
+
 .btn-img {
     cursor: pointer;
     width: 100px;
