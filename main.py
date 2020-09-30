@@ -3,7 +3,7 @@ import uuid
 from itertools import count
 
 from flask import Flask, render_template, request, redirect, url_for, make_response, jsonify
-from datetime import date
+from datetime import date, datetime
 from base64 import b64encode
 
 from models.settings import db
@@ -12,7 +12,6 @@ from models.tasks import Task
 from models.images import Image
 
 from test import dayNameFromWeekday
-from _datetime import datetime, date
 
 app = Flask(__name__)
 
@@ -159,7 +158,7 @@ def my_profile():
     this_week_count = 0
 
     for tsk in tasks:
-        if datetime.strptime(tsk.task_date, "%Y-%m-%d").isocalendar()[1] == today.isocalendar()[1]:
+        if datetime.strptime(tsk.full_date, "%Y-%m-%d").isocalendar()[1] == today.isocalendar()[1]:
             this_week_count = this_week_count + 1
 
     return render_template("myProfile.html", user=user, img=img, this_week_count=this_week_count, notification=notification)
@@ -176,18 +175,22 @@ def add_task():
         return render_template("index.html")
 
     if request.method == "GET":
-        return render_template("addtask.html", img=img)
+        return render_template("addtask.html", img=img, user=user)
 
     if request.method == "POST":
 
         text = request.form.get("text")
         notification = len(tasks)
-        task_date = request.form.get("date")
+        full_date = request.form.get("date")
 
-        name_day = date.weekday(datetime.strptime(task_date, "%Y-%m-%d"))
+        datee = datetime.strptime(full_date, "%Y-%m-%d")
+
+        task_date = str(datee.day) + "." + " " + str(datee.month) + "."
+
+        name_day = date.weekday(datetime.strptime(full_date, "%Y-%m-%d"))
         day = dayNameFromWeekday(name_day)
 
-        Task.create(text=text, author=user, day=day, task_date=task_date)
+        Task.create(text=text, author=user, day=day, task_date=task_date, full_date=full_date)
 
     return redirect(url_for('tasks', notification=notification))
 
@@ -222,34 +225,6 @@ def task_delete(task_id):
 
     return redirect(url_for('tasks', task_id=task_id))
 
-'''
-@app.route("/upload", methods=["POST"])
-def upload():
-    session_token = request.cookies.get("session_token")
-    user = db.query(User).filter_by(session_token=session_token).first()
-    img = db.query(Image).filter_by(author_id=user.id).first()
-
-    image_url = request.form['image_url']
-
-    if image_url:
-
-        if user.image_count >= 1:
-
-            db.delete(img)
-            db.commit
-
-        newImage = Image(author=user, image_url=image_url)
-        newImage.insert()
-
-        user.image_count += 1
-        db.commit()
-
-        return jsonify(newImage.to_dict)
-    else:
-        return jsonify({"success": False, "message": "Error"})
-
-    #return redirect(url_for('my_profile'))
-'''
 
 @app.route("/upload", methods=["POST"])
 def upload():

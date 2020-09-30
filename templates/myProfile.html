@@ -2,7 +2,11 @@
 <html style="height: 100%; width: 100%;" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>({{ notification }}) {{ user.username }} | Taskmanager</title>
+    {% if notification %}
+        <title>({{ notification }}) {{ user.username }} | Taskmanager</title>
+    {% else %}
+        <title>{{ user.username }} | Taskmanager</title>
+    {% endif %}
 
     <link rel="stylesheet" href="../static/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
@@ -15,7 +19,7 @@
 <body>
 
     <header>
-            <div class="nav">
+            <div class="navigation">
                 <div style="background-color: transparent" class="dropdown">
                   <ion-icon name="list-outline"></ion-icon>
                   <div class="dropdown-content">
@@ -24,6 +28,11 @@
                     <a href="/logout">logOut</a>
                   </div>
                 </div>
+                 <div class="profile-picture">
+                    <a href="tasks">
+                        <img style="float: right; width: 30px; height: 30px;" src="../static/logo2.png"/>
+                    </a>
+                 </div>
             </div>
 
         <!------- MODAL ADD IMAGE_URL ------->
@@ -40,7 +49,7 @@
 
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="image_url">Image URL</label>
+                            <label for="image_url">Image URL (you can post your image on imgur, open image in new tab and then copy URL here)</label>
                             <textarea class="form-control" id="image_url" rows="2" placeholder="Enter your profile image URL"></textarea>
                         </div>
                     </div>
@@ -99,6 +108,12 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
+    {% if not img %}
+        <script type="text/javascript">
+            window.onload = function(){//window.addEventListener('load',function(){...}); (for Netscape) and window.attachEvent('onload',function(){...}); (for IE and Opera) also work
+                alert('You can change your profile pictur by clicking on it:)');
+            }
+        </script>
+    {% endif %}
 </body>
 </html>

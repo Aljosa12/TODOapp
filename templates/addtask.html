@@ -2,7 +2,11 @@
 <html style="height: 100%; width: 100%;" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>({{ notification }}) add task | Taskmanager</title>
+    {% if notification %}
+        <title>({{ notification }}) {{ user.username }} | Taskmanager</title>
+    {% else %}
+        <title>{{ user.username }} | Taskmanager</title>
+    {% endif %}
     
     <link rel="stylesheet" href="../static/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
@@ -15,7 +19,7 @@
 <body>
     <header>
 
-        <div class="nav">
+        <div class="navigation">
                 <div style="background-color: transparent" class="dropdown">
                   <ion-icon name="list-outline"></ion-icon>
                   <div class="dropdown-content">

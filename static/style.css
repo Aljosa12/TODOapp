@@ -160,13 +160,13 @@ header {
 
 
 /* ----------------- TASKS PAGE ------------------*/
-.nav {
+.navigation {
     width: 750px;
     margin-left: auto;
     margin-right: auto;
 }
 
-.nav ion-icon {
+.navigation ion-icon {
     color: #fff;
     font-size: 40px;
     padding-top: 5px;

@@ -2,7 +2,11 @@
 <html style="height: 100%; width: 100%;" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>({{ notification }}) Taskmanager</title>
+    {% if notification %}
+        <title>({{ notification }}) {{ user.username }} | Taskmanager</title>
+    {% else %}
+        <title>{{ user.username }} | Taskmanager</title>
+    {% endif %}
     
     <link rel="stylesheet" href="../static/style.css">
     <meta name="viewport" content ="width=device-width,initial-scale=1,user-scalable=yes" />
@@ -13,7 +17,7 @@
 <body>
         <header>
           <!-------------- Navigacija ---------------->
-            <div class="nav">
+            <div class="navigation">
                 <div style="background-color: transparent" class="dropdown">
                   <ion-icon name="list-outline"></ion-icon>
                   <div class="dropdown-content">
@@ -40,21 +44,21 @@
              <div class="content-header">
                 <div class="tasks">
                             {% for task in tasks %}
-                                    {% if user.id == task.author.id %}
                                         <div class="test">
                                             <form method="POST" action="/task/{{task.id}}/delete">
                                             <ion-icon name="checkmark-circle-outline"></ion-icon>
                                                 <td>{{ task.text }}</td>
                                                 {% if today == task.task_date %}
                                                     <td><a style="font-size: 12px;color: #21b08f">Today</a></td>
+                                                    <td><a style="font-size: 12px;color: #21b08f">{{ task.task_date }}</a></td>
                                                 {% else  %}
                                                 <td><a style="font-size: 12px;color: #21b08f">{{ task.day }}</a></td>
+                                                <td><a style="font-size: 12px;color: #21b08f">{{ task.task_date }}</a></td>
                                                 {% endif %}
                                                     <td><button type="submit" name="action" value="delete" class="button delete">delete</button></td>
                                                     <td><button type="submit" name="action" value="completed" class="button edit">completed</button></td>
                                             </form>
                                         </div>
-                                    {% endif %}
                             {% endfor %}
                     
                 </div>
