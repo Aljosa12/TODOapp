@@ -357,7 +357,7 @@ header {
 
 @media (max-width: 700px) {
     .tasks {
-    width: 380px;
+    width: 80%;
     float: left;
     margin-top: -100px;
     }
@@ -399,8 +399,7 @@ header {
     }
 
     .title h1 {
-        font-size: 40px;
-
+        font-size: 20px;
     }
 
     .title form button {
@@ -411,5 +410,36 @@ header {
         width: 85%;
     }
 
+    .content-header {
+        width: 100%;
+        text-align: center;
+    }
+
+    .content-header tasks {
+        width: 85%;
+    }
+
+    .head-auth {
+        width: 66%;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .btn-auth {
+        width: 210px;
+        height: 60px;
+        float: bottom;
+        left: 50%;
+        margin-left: -105px;
+        margin-right: auto;
+        bottom: 10px;
+        text-align: center;
+        position:absolute;
+    }
+
+    .login{
+        margin-left: 57px;
+    }
 }
 
