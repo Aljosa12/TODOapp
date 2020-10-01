@@ -319,13 +319,6 @@ header {
     width: 100px;
     height: 100px;
 }
-
-/*.img-wrap {
-    width: 100px;
-    height: 100px;
-    margin-left: auto;
-    margin-right: auto;
-}*/
   
   .btn-img img {
     display: block;
@@ -369,8 +362,8 @@ header {
     margin-top: -100px;
     }
 
-    .nav {
-    width: 380px;
+    .navigation {
+    width: 80%;
     margin-left: auto;
     margin-right: auto;
     }
@@ -393,6 +386,29 @@ header {
 
     .test {
         padding-top:10px;
+    }
+
+    .title form{
+        width: 100%;
+        text-align:center;
+        margin: auto;
+    }
+
+    .title form input {
+        width: 85%;
+    }
+
+    .title h1 {
+        font-size: 40px;
+
+    }
+
+    .title form button {
+        width: 85%;
+    }
+
+    .title form textarea {
+        width: 85%;
     }
 
 }
