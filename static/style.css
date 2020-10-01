@@ -238,6 +238,13 @@ header {
     color: white;
 }
 
+.check-box {
+    background-color: transparent;
+    border: none;
+    height: 15px;
+    cursor: pointer;
+}
+
 .tasks form {
     height: 20px;
 }
@@ -262,17 +269,6 @@ header {
 .button:hover {
     background-color: darkred;
     color: #fff;
-}
-
-.edit{
-    color: #fff;
-    padding: 2px 5px;
-    margin-right: 5px;
-    background-color: dodgerblue;
-}
-
-.edit:hover {
-    background-color: hsla(210, 100%, 56%, 0.5);
 }
 
 .test {
@@ -355,11 +351,13 @@ header {
   }
 
 
-@media (max-width: 700px) {
+@media (max-width: 400px) {
     .tasks {
     width: 80%;
     float: left;
     margin-top: -100px;
+    text-align: left;
+    line-height: 20px;
     }
 
     .navigation {
@@ -370,10 +368,6 @@ header {
 
     header {
         background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(slika2.jpg);
-    }
-
-    .title h1 {
-        text-align: left;
     }
 
     .auth {
@@ -388,6 +382,11 @@ header {
         padding-top:10px;
     }
 
+    .title {
+        width: 80%;
+        text-align: center;
+    }
+
     .title form{
         width: 100%;
         text-align:center;
@@ -395,7 +394,23 @@ header {
     }
 
     .title form input {
-        width: 85%;
+        width: 100%;
+    }
+
+    .naslov-signup {
+        width: 110px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .naslov-addtask {
+        width: 136px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .auth {
+        width. 100%;
     }
 
     .title h1 {
@@ -403,11 +418,11 @@ header {
     }
 
     .title form button {
-        width: 85%;
+        width: 100%;
     }
 
     .title form textarea {
-        width: 85%;
+        width: 100%;
     }
 
     .content-header {
@@ -442,5 +457,19 @@ header {
         margin-left: 126px;
     }
 }
-}
 
+
+@media (max-width: 750px) and (min-width: 400px) {
+    .tasks {
+    width: 80%;
+    float: left;
+    margin-top: -100px;
+    text-align: left;
+    }
+
+    .navigation {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    }
+}

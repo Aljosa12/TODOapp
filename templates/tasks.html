@@ -45,7 +45,9 @@
                             {% for task in tasks %}
                                         <div class="test">
                                             <form method="POST" action="/task/{{task.id}}/delete">
-                                            <ion-icon name="checkmark-circle-outline"></ion-icon>
+                                                <button class="check-box"  name="action" value="completed">
+                                                    <ion-icon style="color: dodgerblue;" name="checkmark-circle-outline"></ion-icon>
+                                                </button>
                                                 <td>{{ task.text }}</td>
                                                 {% if today == task.task_date %}
                                                     <td><a style="font-size: 12px;color: #21b08f">Today</a></td>
@@ -55,7 +57,6 @@
                                                 <td><a style="font-size: 12px;color: #21b08f">{{ task.task_date }}</a></td>
                                                 {% endif %}
                                                     <td><button type="submit" name="action" value="delete" class="button delete">delete</button></td>
-                                                    <td><button type="submit" name="action" value="completed" class="button edit">completed</button></td>
                                             </form>
                                         </div>
                             {% endfor %}
