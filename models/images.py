@@ -8,7 +8,7 @@ class Image(db.Model):
     image_url = db.Column(db.String)
     author_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     author = db.relationship("User")
-    created = db.Column(db.String, default=datetime.utcnow)
+    created = db.Column(db.DateTime, default=datetime.utcnow)
 
     def insert(self):
         db.add(self)
