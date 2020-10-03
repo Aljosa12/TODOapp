@@ -27,33 +27,46 @@
                   </div>
                 </div>
                 <div class="profile-picture">
-                    {% if not img %}
-                        <a href="my_profile">
-                            <img style="border-radius: 50px; width: 35px; height: 35px;" src="../static/profile.png"/>
-                        </a>
-                    {% else %}
-                        <a href="my_profile">
-                            <img style="border-radius: 50px; width: 35px; height: 35px;" src="{{ img.image_url }}"/>
-                        </a>
-                    {% endif %}
+                        {% if tasks %}
+                        <div style=" display: inline-block;width: 35px; height: 35px;">
+                            <a href="/add_task">
+                                <img style=" display: inline-block; border-radius: 50px; width: 35px; height: 35px;" src="../static/plus_btn.png"/>
+                            </a>
+                        </div >
+                        {% endif %}
+                        <div style="float: right; display: inline-block;width: 35px; height: 35px;">
+                            {% if not img %}
+                            <a href="my_profile">
+                                <img style=" display: inline-block; border-radius: 50px; width: 35px; height: 35px;" src="../static/profile.png"/>
+                            </a>
+                            {% else %}
+                                <a href="my_profile">
+                                    <img style=" display: inline-block; border-radius: 50px; width: 35px; height: 35px;" src="{{ img.image_url }}"/>
+                                </a>
+                            {% endif %}
+                        </div>
+
                 </div>
             </div>
+
 
            <!-------------- Tasks display ---------------->
              <div class="content-header">
                 <div class="tasks">
 
-                            {% if not tasks %}
-                                <a href="my_profile">
-                                    <img style="border-radius: 50px; width: 200px; height: 60px;" src="../static/add_btn.png"/>
-                                </a>
-                            {% endif %}
+                    {% if not tasks %}
+                    <div class="add_btn_container">
+                            <a href="/add_task">
+                                <img height="65" width="200" src="../static/add_btn_2.png"/>
+                            </a>
+                    </div>
+                    {% endif %}
                             
                             {% for task in tasks %}
                                         <div class="test">
                                             <form method="POST" action="/task/{{task.id}}/delete">
                                                 <button class="check-box"  name="action" value="completed">
-                                                    <ion-icon style="color: dodgerblue;" name="checkmark-circle-outline"></ion-icon>
+                                                    <ion-icon style="color: #00bfff" name="checkmark-circle-outline"></ion-icon>
                                                 </button>
                                                 <td>{{ task.text }}</td>
                                                 {% if today == task.task_date %}
@@ -67,9 +80,7 @@
                                             </form>
                                         </div>
                             {% endfor %}
-                    
-                </div>
-
+                    </div>
                 </div>
 
             </header>
