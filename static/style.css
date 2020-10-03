@@ -225,12 +225,6 @@ header {
     color: #21b08f;
 }
 
-.profile-picture {
-    width: 35px;
-    float: right;
-    padding-top: 15px;
-}
-
 .tasks {
     width: 750px;
     float: left;
@@ -284,13 +278,12 @@ header {
 
 /* ----------------- MY PROFILE ------------------*/
 
-.profile_picture{
-    margin-top: -200px; 
-    border-radius: 50px; 
-    width: 100px; 
-    height: 100px;
+.profile-picture {
+    width: 80px;
     float: right;
+    padding-top: 15px;
 }
+
 
 .profile_data {
     margin-top: 10px;
@@ -410,7 +403,7 @@ header {
     }
 
     .auth {
-        width. 100%;
+        width: 100%;
     }
 
     .title h1 {
@@ -473,3 +466,27 @@ header {
     margin-right: auto;
     }
 }
+
+.add_btn_container {
+    margin-top: 10%;
+    width: 200px;
+    height: 65px;
+    margin-left: auto;
+    margin-right: auto;
+    transition: all 0.8s;
+}
+
+.add_btn_container img{
+    transition: all 0.8s;
+}
+
+.add_btn_container:hover {
+    margin-top: 9.5%;
+}
+
+.add_btn_container img:hover {
+    width: 210px;
+    height: 69px;
+    margin-right: 115px;
+}
+
