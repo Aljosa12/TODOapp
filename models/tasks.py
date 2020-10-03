@@ -7,7 +7,7 @@ class Task(db.Model):
     text = db.Column(db.String)
     day = db.Column(db.String)
     task_date = db.Column(db.String)
-    full_date = db.Column(db.Integer)
+    full_date = db.Column(db.String)
     author_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     author = db.relationship("User")
     created = db.Column(db.DateTime, default=datetime.utcnow)
